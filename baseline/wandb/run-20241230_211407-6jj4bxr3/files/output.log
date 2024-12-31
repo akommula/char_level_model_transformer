@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/train.py", line 152, in <module>
+    scaler = torch.amp.GradScaler("cuda", enabled=(dtype == 'float16'))
+             ^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'torch.amp' has no attribute 'GradScaler'

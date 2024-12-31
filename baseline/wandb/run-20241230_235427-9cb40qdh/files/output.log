@@ -1,0 +1,41 @@
+/opt/anaconda3/lib/python3.11/site-packages/torch/cuda/amp/grad_scaler.py:126: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  warnings.warn(
+Starting Training Loop...
+Traceback (most recent call last):
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/train.py", line 171, in <module>
+    losses = estimate_loss()
+             ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/train.py", line 128, in estimate_loss
+    _, loss = model(X, Y)
+              ^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 202, in forward
+    hidden_state = layer(hidden_state)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 118, in forward
+    hidden_state = self.attn(hidden_state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 66, in forward
+    hidden = hidden.transpose(1, 2).contiguous().view(B, T, C)
+             ^^^^^^
+UnboundLocalError: cannot access local variable 'hidden' where it is not associated with a value

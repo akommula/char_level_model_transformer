@@ -1,0 +1,12 @@
+{"time":"2024-12-30T23:55:33.285373-08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-30T23:55:33.285421-08:00","level":"INFO","msg":"created symlink","path":"/Users/akommula/code/research/char_level_model_transformer/baseline/wandb/run-20241230_235533-mzep995e/logs/debug-core.log"}
+{"time":"2024-12-30T23:55:33.419633-08:00","level":"INFO","msg":"created new stream","id":"mzep995e"}
+{"time":"2024-12-30T23:55:33.420087-08:00","level":"INFO","msg":"stream: started","id":"mzep995e"}
+{"time":"2024-12-30T23:55:33.420113-08:00","level":"INFO","msg":"handler: started","stream_id":"mzep995e"}
+{"time":"2024-12-30T23:55:33.420297-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"mzep995e"}
+{"time":"2024-12-30T23:55:33.420297-08:00","level":"INFO","msg":"sender: started","stream_id":"mzep995e"}
+{"time":"2024-12-30T23:55:33.641457-08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-30T23:55:45.869337-08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-30T23:55:45.869991-08:00","level":"INFO","msg":"stream: closing","id":"mzep995e"}
+{"time":"2024-12-30T23:55:45.873859-08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-30T23:55:46.309513-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}

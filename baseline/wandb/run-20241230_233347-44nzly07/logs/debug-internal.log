@@ -1,0 +1,16 @@
+{"time":"2024-12-30T23:33:47.629917-08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-30T23:33:47.629961-08:00","level":"INFO","msg":"created symlink","path":"/Users/akommula/code/research/char_level_model_transformer/baseline/wandb/run-20241230_233347-44nzly07/logs/debug-core.log"}
+{"time":"2024-12-30T23:33:47.76455-08:00","level":"INFO","msg":"created new stream","id":"44nzly07"}
+{"time":"2024-12-30T23:33:47.765019-08:00","level":"INFO","msg":"stream: started","id":"44nzly07"}
+{"time":"2024-12-30T23:33:47.765027-08:00","level":"INFO","msg":"handler: started","stream_id":"44nzly07"}
+{"time":"2024-12-30T23:33:47.765223-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"44nzly07"}
+{"time":"2024-12-30T23:33:47.765227-08:00","level":"INFO","msg":"sender: started","stream_id":"44nzly07"}
+{"time":"2024-12-30T23:33:47.984356-08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-30T23:33:55.359841-08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-30T23:33:55.35986-08:00","level":"INFO","msg":"stream: closing","id":"44nzly07"}
+{"time":"2024-12-30T23:33:55.364024-08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-30T23:33:55.834181-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-30T23:33:56.02711-08:00","level":"INFO","msg":"handler: closed","stream_id":"44nzly07"}
+{"time":"2024-12-30T23:33:56.027603-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"44nzly07"}
+{"time":"2024-12-30T23:33:56.028026-08:00","level":"INFO","msg":"sender: closed","stream_id":"44nzly07"}
+{"time":"2024-12-30T23:33:56.029656-08:00","level":"INFO","msg":"stream: closed","id":"44nzly07"}

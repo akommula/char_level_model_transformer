@@ -1,0 +1,12 @@
+{"time":"2024-12-30T23:58:39.875342-08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-30T23:58:39.87539-08:00","level":"INFO","msg":"created symlink","path":"/Users/akommula/code/research/char_level_model_transformer/baseline/wandb/run-20241230_235839-gs520s4e/logs/debug-core.log"}
+{"time":"2024-12-30T23:58:40.003865-08:00","level":"INFO","msg":"created new stream","id":"gs520s4e"}
+{"time":"2024-12-30T23:58:40.004156-08:00","level":"INFO","msg":"stream: started","id":"gs520s4e"}
+{"time":"2024-12-30T23:58:40.004148-08:00","level":"INFO","msg":"handler: started","stream_id":"gs520s4e"}
+{"time":"2024-12-30T23:58:40.004133-08:00","level":"INFO","msg":"sender: started","stream_id":"gs520s4e"}
+{"time":"2024-12-30T23:58:40.004135-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"gs520s4e"}
+{"time":"2024-12-30T23:58:40.378662-08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-31T00:00:23.60637-08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-31T00:00:23.60954-08:00","level":"INFO","msg":"stream: closing","id":"gs520s4e"}
+{"time":"2024-12-31T00:00:23.61942-08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-31T00:00:24.046985-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}

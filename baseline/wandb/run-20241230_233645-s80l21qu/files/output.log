@@ -1,0 +1,123 @@
+/opt/anaconda3/lib/python3.11/site-packages/torch/cuda/amp/grad_scaler.py:126: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  warnings.warn(
+Starting Training Loop...
+Input: torch.Size([12, 512])
+Input: tensor([[1, 1, 1,  ..., 1, 1, 1],
+        [1, 1, 1,  ..., 1, 1, 1],
+        [1, 1, 1,  ..., 1, 1, 1],
+        ...,
+        [1, 1, 1,  ..., 1, 1, 1],
+        [1, 1, 1,  ..., 1, 1, 1],
+        [1, 1, 1,  ..., 1, 1, 1]])
+Embedding Lookup: Embedding(2, 768)
+Hidden State Shape: torch.Size([12, 12, 512, 64])
+Traceback (most recent call last):
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/train.py", line 171, in <module>
+    losses = estimate_loss()
+             ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/train.py", line 128, in estimate_loss
+    _, loss = model(X, Y)
+              ^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 489, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 187, in forward
+    def forward(self, input, targets = None):
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 194, in resume_in_forward
+    print("Input:", input.shape)
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 195, in resume_in_forward
+    print("Input:", input)
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 203, in resume_in_forward
+    hidden_state = layer(hidden_state)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 113, in forward
+    def forward(self, input):
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 47, in forward
+    def forward(self, x):
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 655, in catch_errors
+    return callback(frame, cache_entry, hooks, frame_state)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/convert_frame.py", line 727, in _convert_frame
+    result = inner_convert(frame, cache_entry, hooks, frame_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/convert_frame.py", line 383, in _convert_frame_assert
+    compiled_product = _compile(
+                       ^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/convert_frame.py", line 665, in _compile
+    raise InternalTorchDynamoError(str(e)).with_traceback(
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/convert_frame.py", line 646, in _compile
+    guarded_code = compile_inner(code, one_graph, hooks, transform)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/utils.py", line 244, in time_wrapper
+    r = func(*args, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/convert_frame.py", line 562, in compile_inner
+    out_code = transform_code_object(code, transform)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/bytecode_transformation.py", line 1033, in transform_code_object
+    transformations(instructions, code_options)
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/convert_frame.py", line 151, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/convert_frame.py", line 527, in transform
+    tracer.run()
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/symbolic_convert.py", line 2128, in run
+    super().run()
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/symbolic_convert.py", line 818, in run
+    and self.step()
+        ^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/symbolic_convert.py", line 781, in step
+    getattr(self, inst.opname)(inst)
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/symbolic_convert.py", line 1303, in LOAD_ATTR
+    result = BuiltinVariable(getattr).call_function(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/variables/builtin.py", line 651, in call_function
+    result = handler(tx, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/variables/builtin.py", line 1173, in call_getattr
+    return obj.var_getattr(tx, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/_dynamo/variables/nn_module.py", line 195, in var_getattr
+    subobj = inspect.getattr_static(base, name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/inspect.py", line 1853, in getattr_static
+    raise AttributeError(attr)
+torch._dynamo.exc.InternalTorchDynamoError: shape
+
+from user code:
+   File "/Users/akommula/code/research/char_level_model_transformer/baseline/model.py", line 67, in resume_in_forward
+    print("Self.W_O Shape:", self.w_o.shape)
+
+Set TORCH_LOGS="+dynamo" and TORCHDYNAMO_VERBOSE=1 for more information
+
+
+You can suppress this exception and fall back to eager by setting:
+    import torch._dynamo
+    torch._dynamo.config.suppress_errors = True

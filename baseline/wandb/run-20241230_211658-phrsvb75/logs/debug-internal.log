@@ -1,0 +1,16 @@
+{"time":"2024-12-30T21:16:58.596891-08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-30T21:16:58.596956-08:00","level":"INFO","msg":"created symlink","path":"/Users/akommula/code/research/char_level_model_transformer/baseline/wandb/run-20241230_211658-phrsvb75/logs/debug-core.log"}
+{"time":"2024-12-30T21:16:58.73052-08:00","level":"INFO","msg":"created new stream","id":"phrsvb75"}
+{"time":"2024-12-30T21:16:58.731044-08:00","level":"INFO","msg":"stream: started","id":"phrsvb75"}
+{"time":"2024-12-30T21:16:58.731044-08:00","level":"INFO","msg":"handler: started","stream_id":"phrsvb75"}
+{"time":"2024-12-30T21:16:58.731244-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"phrsvb75"}
+{"time":"2024-12-30T21:16:58.731244-08:00","level":"INFO","msg":"sender: started","stream_id":"phrsvb75"}
+{"time":"2024-12-30T21:16:58.980709-08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-30T21:16:59.268731-08:00","level":"INFO","msg":"stream: closing","id":"phrsvb75"}
+{"time":"2024-12-30T21:16:59.268747-08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-30T21:16:59.272867-08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-30T21:16:59.9443-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-30T21:17:00.100096-08:00","level":"INFO","msg":"handler: closed","stream_id":"phrsvb75"}
+{"time":"2024-12-30T21:17:00.100662-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"phrsvb75"}
+{"time":"2024-12-30T21:17:00.10096-08:00","level":"INFO","msg":"sender: closed","stream_id":"phrsvb75"}
+{"time":"2024-12-30T21:17:00.102565-08:00","level":"INFO","msg":"stream: closed","id":"phrsvb75"}

@@ -1,0 +1,16 @@
+{"time":"2024-12-30T23:35:36.552914-08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-30T23:35:36.552971-08:00","level":"INFO","msg":"created symlink","path":"/Users/akommula/code/research/char_level_model_transformer/baseline/wandb/run-20241230_233536-bdok2vmb/logs/debug-core.log"}
+{"time":"2024-12-30T23:35:36.684901-08:00","level":"INFO","msg":"created new stream","id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:36.685124-08:00","level":"INFO","msg":"stream: started","id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:36.685223-08:00","level":"INFO","msg":"handler: started","stream_id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:36.685384-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:36.685386-08:00","level":"INFO","msg":"sender: started","stream_id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:36.983185-08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-30T23:35:44.435548-08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-30T23:35:44.436545-08:00","level":"INFO","msg":"stream: closing","id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:44.439854-08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-30T23:35:44.859803-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-30T23:35:45.044235-08:00","level":"INFO","msg":"handler: closed","stream_id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:45.04495-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:45.045384-08:00","level":"INFO","msg":"sender: closed","stream_id":"bdok2vmb"}
+{"time":"2024-12-30T23:35:45.046959-08:00","level":"INFO","msg":"stream: closed","id":"bdok2vmb"}

@@ -1,0 +1,8 @@
+{"time":"2024-12-30T23:45:16.732801-08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-30T23:45:16.732872-08:00","level":"INFO","msg":"created symlink","path":"/Users/akommula/code/research/char_level_model_transformer/baseline/wandb/run-20241230_234516-fv1nnyss/logs/debug-core.log"}
+{"time":"2024-12-30T23:45:16.88336-08:00","level":"INFO","msg":"created new stream","id":"fv1nnyss"}
+{"time":"2024-12-30T23:45:16.883803-08:00","level":"INFO","msg":"handler: started","stream_id":"fv1nnyss"}
+{"time":"2024-12-30T23:45:16.883831-08:00","level":"INFO","msg":"stream: started","id":"fv1nnyss"}
+{"time":"2024-12-30T23:45:16.883994-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"fv1nnyss"}
+{"time":"2024-12-30T23:45:16.884021-08:00","level":"INFO","msg":"sender: started","stream_id":"fv1nnyss"}
+{"time":"2024-12-30T23:45:17.11992-08:00","level":"INFO","msg":"Starting system monitor"}

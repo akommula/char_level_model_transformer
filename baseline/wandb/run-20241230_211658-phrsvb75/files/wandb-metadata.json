@@ -1,0 +1,36 @@
+{
+  "os":  "macOS-10.16-x86_64-i386-64bit",
+  "python":  "CPython 3.11.7",
+  "startedAt":  "2024-12-31T05:16:58.583946Z",
+  "program":  "/Users/akommula/code/research/char_level_model_transformer/baseline/train.py",
+  "codePath":  "baseline/train.py",
+  "git":  {
+    "remote":  "git@github.com:akommula/char_level_model_transformer.git",
+    "commit":  "7a27ffcbb7cc936a03bb59191abf71bfe0844352"
+  },
+  "email":  "akommula@berkeley.edu",
+  "root":  "/Users/akommula/code/research/char_level_model_transformer/baseline",
+  "host":  "Rajas-MacBook-Pro.local",
+  "executable":  "/opt/anaconda3/bin/python",
+  "codePathLocal":  "train.py",
+  "cpu_count":  10,
+  "cpu_count_logical":  10,
+  "disk":  {
+    "/":  {
+      "total":  "994662584320",
+      "used":  "252934180864"
+    },
+    "/System/Volumes/Data":  {
+      "total":  "994662584320",
+      "used":  "252934180864"
+    }
+  },
+  "memory":  {
+    "total":  "17179869184"
+  },
+  "cpu":  {
+    "count":  10,
+    "countLogical":  10
+  },
+  "apple":  {}
+}
