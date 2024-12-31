@@ -6,26 +6,37 @@ from collections import Counter
 # Map character ascii values to integers
 class BuildTokenizer:
     def __init__(self, path):
-        self.num_unique_chars = 2
+        self.num_unique_chars = 1
         self.char2idx = {}
         
         print("Starting Train Ingestion...")
-        self.train = self.tokenize(os.path.join(path, 'train.txt')) 
-        #self.train = np.ones(1024, dtype=np.int64)
+        if not os.path.exists(os.path.join(path, 'train_np.npy')):
+            self.train = self.tokenize(path, 'train')
+        else:
+            self.train = np.load(os.path.join(path, 'train_np.npy'))
         print("Train dataset size:", len(self.train))
         
         print("Starting Valid Ingestion...")
-        self.valid = self.tokenize(os.path.join(path, 'valid.txt'))
-        #self.valid = np.ones(1024, dtype=np.int64)
-        print("Valid dataset size:", len(self.train))
+        if not os.path.exists(os.path.join(path, 'valid_np.npy')):
+            self.valid = self.tokenize(path, 'valid')
+        else:
+            self.valid = np.load(os.path.join(path, 'valid_np.npy'))
+        print("Valid dataset size:", len(self.valid))
         
         print("Starting Test Ingestion...")
-        self.test = self.tokenize(os.path.join(path, 'test.txt'))
-        #self.test = np.ones(1024, dtype=np.int64)
-        print("Test dataset size:", len(self.train))
+        if not os.path.exists(os.path.join(path, 'test_np.npy')):
+            self.test = self.tokenize(path, 'test')
+        else:
+            self.test =  np.load(os.path.join(path, 'test_np.npy'))            
+        print("Test dataset size:", len(self.test))
         
-    def tokenize(self, path):
+        # Prevent off by 1 indexing errors
+        self.num_unique_chars = len(np.unique(np.concatenate([self.train, self.valid, self.test]))) + 1
+        
+    def tokenize(self, base, split):
+        path = os.path.join(base, f"{split}.txt")
         assert os.path.exists(path)
+        
         with open(path, 'r') as f:
             tokens = 0
             for line in f:
@@ -44,7 +55,8 @@ class BuildTokenizer:
 
                 ids[idx:idx + len(chars)] = [self.char2idx[char] for char in chars]
                 idx += len(chars)
-                
+        
+        np.save(os.path.join(base, f"{split}_np.npy"), ids) 
         return ids
 
     def add_character(self, char):

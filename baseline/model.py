@@ -35,6 +35,7 @@ class CausalSelfAttention(nn.Module):
         self.qkv = nn.Linear(config.n_hidden, config.n_hidden * 3, bias = config.bias)
         self.w_o = nn.Linear(config.n_hidden, config.n_hidden, bias = config.bias)
         
+        self.dropout = config.dropout
         self.attn_dropout = nn.Dropout(config.dropout)
         self.residual_dropout = nn.Dropout(config.dropout)
         

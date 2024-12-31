@@ -15,35 +15,40 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from data.tokenizer import BuildTokenizer
 from model import GPTModel, GPTConfig
 
+# Cuda Memory Management
+#os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
+#torch.cuda.empty_cache()
+#print(f"Memory allocated: {torch.cuda.memory_allocated(0) / 1024**3:.2f} GB")
+#print(f"Memory cached: {torch.cuda.memory_reserved(0) / 1024**3:.2f} GB")
+
 # Training Parameters
 eval_only = False
-max_iters = 600000 
-#eval_interval = 2000
-eval_interval = 1
+max_iters = 600
+eval_interval = 10
 log_interval = 1
-eval_iters = 200
+eval_iters = 20
 eval_only = False
 grad_clip = 1.0
 
 # Config parameters
-CONTEXT_LENGTH = 512
-HIDDEN_SIZE = 768
+CONTEXT_LENGTH = 2048
+HIDDEN_SIZE = 512
 NUM_LAYERS = 12
 NUM_HEADS = 12
-BATCH_SIZE = 12
-DROPOUT = 0.1
+BATCH_SIZE = 16
+DROPOUT = 0.55
 
 # AdamW Optimizer Parameters
 weight_decay = 1e-1
-max_learning_rate = 6e-4
+max_learning_rate = 6e-5
 beta1 = 0.9
 beta2 = 0.95
 
 # Learning Rate Scheduler Parameters
 decay_lr = True
-warmup_iters = 2000
-lr_decay_iters = 600000
-min_lr = 6e-5
+warmup_iters = 10
+lr_decay_iters = 600
+min_lr = 6e-6
 
 config = {
     "context_length": CONTEXT_LENGTH,
@@ -59,18 +64,18 @@ config = {
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device_type = 'cuda' if 'cuda' in device.type else 'cpu'
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16'
-compile = False
+compile = True
 print("Using device: ", device) 
 print("Using dtype: ", dtype)
 
 # Wandb logging
 wandb_log = True
 wandb_project = 'model-training'
-wandb_run_name = 'gpt2-char-transformer'
+wandb_run_name = 'gpt2-char-transformer' + '_run_' + str(time.time())
 
 # Data Ingestion / Storage
 out_dir = 'checkpoints'
-path = '/Users/akommula/code/research/char_level_model_transformer/data/enwik8'
+path = '/home/ubuntu/projects/char_level_model_transformer/data/enwik8'
 
 t0 = time.time()
 print(f"Starting to ingest Train/Valid/Test data...")
@@ -78,7 +83,7 @@ tokenized_data = BuildTokenizer(path)
 print(f"Finished ingesting; Time: {(time.time() - t0) * 1000 :.2f}ms")
 
 # Extract vocab size
-VOCAB_SIZE = tokenized_data.num_unique_chars
+VOCAB_SIZE = 2 ** math.ceil(math.log2(tokenized_data.num_unique_chars))
 
 def batchify(data, batch_size = BATCH_SIZE, block_size = CONTEXT_LENGTH):
     ix = torch.randint(len(data) - block_size, (batch_size,))
@@ -156,11 +161,15 @@ if wandb_log:
 scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
 gradient_accumulation_steps = 5 * 8
 
+X, Y = batchify(tokenized_data.train)
 t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 iter_num = 0
+best_val_loss = 1e9
 
 print("Starting Training Loop...")
+print("Vocab Size:", VOCAB_SIZE)
+
 while True:
     # determine and set the learning rate for this iteration
     lr = get_lr(iter_num) if decay_lr else max_learning_rate
@@ -224,7 +233,7 @@ while True:
     t0 = t1
     if iter_num % log_interval == 0:
         # get loss as float. note: this is a CPU-GPU sync point
-        lossf = loss.item() * gradient_accumulation_steps
+        lossf = loss.item() *  gradient_accumulation_steps
         print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms")
     iter_num += 1
     local_iter_num += 1
