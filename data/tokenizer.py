@@ -11,6 +11,7 @@ class BuildTokenizer:
         
         print("Starting Train Ingestion...")
         if not os.path.exists(os.path.join(path, 'train_np.npy')):
+            self.add_character('32') # Treat space character as a special token
             self.train = self.tokenize(path, 'train')
         else:
             self.train = np.load(os.path.join(path, 'train_np.npy'))
