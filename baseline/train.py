@@ -16,39 +16,38 @@ from data.tokenizer import BuildTokenizer
 from model import GPTModel, GPTConfig
 
 # Cuda Memory Management
-#os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
-#torch.cuda.empty_cache()
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 #print(f"Memory allocated: {torch.cuda.memory_allocated(0) / 1024**3:.2f} GB")
 #print(f"Memory cached: {torch.cuda.memory_reserved(0) / 1024**3:.2f} GB")
 
 # Training Parameters
 eval_only = False
-max_iters = 600
-eval_interval = 10
+max_iters = 60000
+eval_interval = 200
 log_interval = 1
 eval_iters = 20
 eval_only = False
 grad_clip = 1.0
 
 # Config parameters
-CONTEXT_LENGTH = 2048
-HIDDEN_SIZE = 512
+CONTEXT_LENGTH = 512
+HIDDEN_SIZE = 768
 NUM_LAYERS = 12
 NUM_HEADS = 12
-BATCH_SIZE = 16
-DROPOUT = 0.55
+BATCH_SIZE = 12
+DROPOUT = 0.2
 
 # AdamW Optimizer Parameters
 weight_decay = 1e-1
-max_learning_rate = 6e-5
+max_learning_rate = 6e-4
 beta1 = 0.9
 beta2 = 0.95
 
-# Learning Rate Scheduler Parameters
+# Learning Rate Scheduler P arameters
 decay_lr = True
-warmup_iters = 10
-lr_decay_iters = 600
-min_lr = 6e-6
+warmup_iters = 200
+lr_decay_iters = 60000
+min_lr = 6e-5
 
 config = {
     "context_length": CONTEXT_LENGTH,
@@ -75,7 +74,7 @@ wandb_run_name = 'gpt2-char-transformer' + '_run_' + str(time.time())
 
 # Data Ingestion / Storage
 out_dir = 'checkpoints'
-path = '/home/ubuntu/projects/char_level_model_transformer/data/enwik8'
+path = '/home/ubuntu/char_level_model_transformer/data/enwik8'
 
 t0 = time.time()
 print(f"Starting to ingest Train/Valid/Test data...")

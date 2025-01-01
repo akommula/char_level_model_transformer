@@ -110,11 +110,9 @@ class GPTLayer(nn.Module):
         self.ln_2 = LayerNorm(config.n_hidden, config.bias)
         self.ff = FeedForward(config)
         
-    def forward(self, input):
-        hidden_state = self.ln_1(input)
-        hidden_state = self.attn(hidden_state)
-        hidden_state = self.ln_2(hidden_state)
-        hidden_state = self.ff(hidden_state)
+    def forward(self, hidden_state):
+        hidden_state = hidden_state + self.attn(self.ln_1(hidden_state))
+        hidden_state = hidden_state + self.ff(self.ln_2(hidden_state))
         
         return hidden_state
         
@@ -137,7 +135,7 @@ class GPTModel(nn.Module):
         self.vocab_projection = nn.Linear(config.n_hidden, config.vocab_size, bias=False)
         
         # Copy embedding weights from vocab_projection to embedding_lookup
-        self.transformer['embedding_lookup'].weight = self.vocab_projection.weight
+        self.transformer.embedding_lookup.weight = self.vocab_projection.weight
         
         # Initialize weights recursively
         self.apply(self.init_weights)
@@ -154,11 +152,11 @@ class GPTModel(nn.Module):
 
     def init_weights(self, module):
         if isinstance(module, nn.Linear):
-            torch.nn.init.normal_(module.weight, std = 0.02)
+            torch.nn.init.normal_(module.weight, mean = 0.0, std = 0.02)
             if module.bias is not None:
                 torch.nn.init.zeros_(module.bias)
         elif isinstance(module, nn.Embedding):
-            torch.nn.init.normal_(module.weight, std = 0.02)
+            torch.nn.init.normal_(module.weight, mean = 0.0, std = 0.02)
         
     def configure_optimizers(self, weight_decay, learning_rate, betas, device_type):
         # start with all of the candidate parameters
@@ -189,7 +187,7 @@ class GPTModel(nn.Module):
         assert T <= self.config.context_length, f"Input length {T} is longer than context length {self.config.context_length}" 
         
         device = input.device
-        positional = torch.arange(T, device = device)
+        positional = torch.arange(0, T, dtype = torch.long, device = device)
         
         token_embeddings = self.transformer['embedding_lookup'](input)
         positional_embeddings = self.transformer['positional_embedding'](positional)   
@@ -203,9 +201,9 @@ class GPTModel(nn.Module):
         # Project hidden to vocab space
         if targets is not None:       
             logits = self.vocab_projection(hidden_state) 
-            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1))
+            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
         else:
-            logits = self.vocab_projection(hidden_state[:, -1, :]) 
+            logits = self.vocab_projection(hidden_state[:, [-1], :]) 
             loss = None    
 
         return logits, loss        
