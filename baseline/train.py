@@ -43,7 +43,7 @@ max_learning_rate = 6e-4
 beta1 = 0.9
 beta2 = 0.95
 
-# Learning Rate Scheduler P arameters
+# Learning Rate Scheduler Parameters
 decay_lr = True
 warmup_iters = 200
 lr_decay_iters = 60000
@@ -74,7 +74,7 @@ wandb_run_name = 'gpt2-char-transformer' + '_run_' + str(time.time())
 
 # Data Ingestion / Storage
 out_dir = 'checkpoints'
-path = '/home/ubuntu/char_level_model_transformer/data/enwik8'
+path = '/home/ubuntu/abhinav/char_level_model_transformer/data/enwik8'
 
 t0 = time.time()
 print(f"Starting to ingest Train/Valid/Test data...")

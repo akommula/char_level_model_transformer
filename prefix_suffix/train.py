@@ -43,7 +43,7 @@ max_learning_rate = 6e-4
 beta1 = 0.9
 beta2 = 0.95
 
-# Learning Rate Scheduler P arameters
+# Learning Rate Scheduler Parameters
 decay_lr = True
 warmup_iters = 200
 lr_decay_iters = 60000
@@ -63,18 +63,19 @@ config = {
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device_type = 'cuda' if 'cuda' in device.type else 'cpu'
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16'
-compile = False
+compile = True
 print("Using device: ", device) 
 print("Using dtype: ", dtype)
 
 # Wandb logging
 wandb_log = True
 wandb_project = 'model-training'
-wandb_run_name = 'gpt2-char-transformer' + '_run_' + str(time.time())
+wandb_run_name = 'prefix-suffix-char-transformer' + '_run_' + str(time.time())
 
 # Data Ingestion / Storage
 out_dir = 'checkpoints'
-path = '/Users/akommula/code/research/char_level_model_transformer/data/enwik8'
+path = '/home/ubuntu/abhinav/char_level_model_transformer/data/enwik8'
+#path = '/Users/akommula/code/research/char_level_model_transformer/data/enwik8'
 
 t0 = time.time()
 print(f"Starting to ingest Train/Valid/Test data...")
@@ -96,23 +97,26 @@ def batchify(data, batch_size = BATCH_SIZE, block_size = CONTEXT_LENGTH):
     return x, y
 
 # Seed
-torch.manual_seed(1337)
+seed = 1337
+torch.manual_seed(seed)
 torch.backends.cuda.matmul.allow_tf32 = True # allow tf32 on matmul
 torch.backends.cudnn.allow_tf32 = True # allow tf32 on cudnn
 ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torch.float16}[dtype]
 ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
 
+model_args = CharConfig(
+    vocab_size = VOCAB_SIZE,
+    context_length = CONTEXT_LENGTH,
+    n_layers = NUM_LAYERS,
+    n_hidden = HIDDEN_SIZE,
+    n_head = NUM_HEADS,
+    dropout = DROPOUT,
+    bias = True
+)
+
 # Model and Optimizer initialization
 model = CharModel(
-    config = CharConfig(
-        vocab_size = VOCAB_SIZE,
-        context_length = CONTEXT_LENGTH,
-        n_layers = NUM_LAYERS,
-        n_hidden = HIDDEN_SIZE,
-        n_head = NUM_HEADS,
-        dropout = DROPOUT,
-        bias = True
-    ), 
+    config = model_args,
     space_id = 1
 ).to(device)
 
@@ -195,6 +199,7 @@ while True:
             if iter_num > 0:
                 checkpoint = {
                     'model': model.state_dict(),
+                    'model_args': model_args,
                     'optimizer': optimizer.state_dict(),
                     'iter_num': iter_num,
                     'best_val_loss': best_val_loss,

@@ -240,14 +240,20 @@ class CharModel(nn.Module):
     
     # Do not update params using gradients
     @torch.no_grad() 
-    def generate(self, tokens, n_tokens, temperature = 1.0):
+    def generate(self, tokens, n_tokens, temperature = 1.0, top_k = None):
         for _ in range(n_tokens):
             logits, _ = self(tokens)
             logits = logits[:, -1, :] / temperature
+            
+            # Limit to top_k logits
+            if top_k is not None:
+                values, _ = torch.topk(logits, min(top_k, logits.size(-1)))
+                logits[logits < values[:, [-1]]] = -float('Inf')
+            
             probs = F.softmax(logits, dim = -1)
             next_token = torch.multinomial(probs, num_samples = 1)
             
-            tokens = torch.cat([tokens, next_token], dim = -1)
+            tokens = torch.cat([tokens, next_token], dim = 1)
         
         return tokens
             
